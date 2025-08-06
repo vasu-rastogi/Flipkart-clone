@@ -27,7 +27,7 @@ const products = [
     description: 'Comprehensive Health Monitoring...',
     price: 1500,
     image: '/smartwatch.jpg',
-  }, 
+  },
 ];
 
 // Render product list (on homepage)
@@ -56,10 +56,10 @@ if (productDetails.includes('?id=')) {
     document.getElementById('product-name').innerText = product.name;
     document.getElementById('product-description').innerText = product.description;
     document.getElementById('product-price').innerText = `₹${product.price}`;
-    
+
     // Attach product data to "Add to Cart" button
     document.getElementById('add-to-cart-btn').addEventListener('click', () => {
-      addToCart(product.name, product.price);
+      addToCart(product);
     });
   }
 }
@@ -67,17 +67,17 @@ if (productDetails.includes('?id=')) {
 // Cart functionality
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function addToCart(productName, price) {
-  const itemIndex = cart.findIndex(item => item.name === productName);
+function addToCart(product) {
+  const itemIndex = cart.findIndex(item => item.id === product.id);
 
   if (itemIndex > -1) {
     cart[itemIndex].quantity += 1;
   } else {
-    cart.push({ name: productName, price: price, quantity: 1 });
+    cart.push({ ...product, quantity: 1 });
   }
 
   localStorage.setItem('cart', JSON.stringify(cart));
-  alert(`${productName} added to cart`);
+  alert(`${product.name} added to cart`);
 }
 
 function renderCart() {
@@ -100,17 +100,36 @@ function renderCart() {
     const div = document.createElement('div');
     div.className = 'cart-item';
     div.innerHTML = `
-      <h4>${item.name}</h4>
-      <p>Price: ₹${item.price}</p>
-      <p>Quantity: ${item.quantity}</p>
-      <p>Total: ₹${itemTotal}</p>
+      <img src="${item.image}" alt="${item.name}">
+      <div class="cart-item-details">
+        <h4>${item.name}</h4>
+        <p>Price: ₹${item.price}</p>
+        <p>Quantity: ${item.quantity}</p>
+      </div>
+      <div class="cart-item-actions">
+        <p>Total: ₹${itemTotal}</p>
+        <button onclick="removeFromCart(${item.id})">Remove</button>
+      </div>
     `;
     cartItemsContainer.appendChild(div);
   });
 
   const totalDiv = document.createElement('div');
+  totalDiv.className = 'cart-total';
   totalDiv.innerHTML = `<h3>Grand Total: ₹${total}</h3>`;
   cartItemsContainer.appendChild(totalDiv);
+}
+
+// Function to remove item from cart
+function removeFromCart(productId) {
+  let storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+  const itemIndex = storedCart.findIndex(item => item.id === productId);
+
+  if (itemIndex > -1) {
+    storedCart.splice(itemIndex, 1);
+    localStorage.setItem('cart', JSON.stringify(storedCart));
+    renderCart();
+  }
 }
 
 // Checkout

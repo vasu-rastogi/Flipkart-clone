@@ -96,31 +96,94 @@ header {
 
 .cart-item {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
   margin-bottom: 15px;
 }
 
 .cart-item img {
   width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
-.cart-item div {
+.cart-item-details {
   flex-grow: 1;
-  margin-left: 15px;
 }
 
+.cart-item-details h4 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.cart-item-details p {
+  font-size: 16px;
+  color: #666;
+}
+
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.cart-item-actions p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cart-item-actions button {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #2874f0;
+}
+
+.cart-total h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+.cart button {
+  background-color: #f0c14b;
+  border: none;
+  color: #333;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.cart button:hover {
+  background-color: #e6b338;
+}
 
 .product-details {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 .product-details img {
-  max-width: 600px; 
-  width: 100%; 
+  max-width: 400px; /* Reduced the maximum width */
+  width: 100%;
   height: auto;
   border: 1px solid #ccc;
   padding: 10px;
@@ -162,11 +225,6 @@ header {
 .product-details button:hover {
   background-color: #e6b338;
 }
-
-
-
-
-
 
 /* 📦 Auth Container */
 .auth-container {
@@ -221,7 +279,8 @@ header {
 }
 
 /* 🪄 Inputs */
-.auth-form input {
+.auth-form input,
+.auth-form textarea {
   padding: 0.75rem 1rem;
   border: 1px solid white;
   border-radius: 6px;
@@ -230,10 +289,15 @@ header {
   color: #2874f0;
 }
 
-.auth-form input:focus {
+.auth-form input:focus,
+.auth-form textarea:focus {
   outline: none;
   border-color: #2874f0;
   box-shadow: 0 0 0 2px white;
+}
+
+.auth-form textarea {
+  resize: vertical;
 }
 
 /* 🔘 Button */
@@ -250,9 +314,4 @@ header {
 
 .auth-form button:hover {
   background-color: #f0f0f0;
-}
-.cart-item {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
 }
