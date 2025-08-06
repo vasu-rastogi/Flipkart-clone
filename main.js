@@ -5,28 +5,28 @@ const products = [
     name: 'OPPO F29 Pro',
     description: 'Oppo F29 Pro Android smartphone...',
     price: 15000,
-    image: '/smartphone.png',
+    image: 'smartphone.png',
   },
   {
     id: 2,
     name: 'ASUS VIVOBOOK 15',
     description: 'The Asus VivoBook 15 is a versatile laptop...',
     price: 45000,
-    image: '/laptop.avif',
+    image: 'laptop.avif',
   },
   {
     id: 3,
     name: 'SONY HEADPHONES',
     description: 'From airplane noise to people’s voices...',
     price: 5500,
-    image: '/Headphones.avif',
+    image: 'Headphones.avif',
   },
   {
     id: 4,
     name: 'BOULT DRIFT SMARTWATCH',
     description: 'Comprehensive Health Monitoring...',
     price: 1500,
-    image: '/smartwatch.jpg',
+    image: 'smartwatch.jpg',
   },
 ];
 
